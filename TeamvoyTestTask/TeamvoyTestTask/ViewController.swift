@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    
     private var articles: [Article] = []
         
     var filteredData = [Article]()
@@ -21,8 +22,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTable(_ :)), name: Notification.Name("update"), object: nil)
+        tableView?.allowsSelection = true
         self.searchBar.delegate = self
         tableView.dataSource = self
+        tableView.delegate = self
         let nib = UINib(nibName: "ArticleCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ArticleCell")
         APIManager.shared.getArticles { [weak self] articlesArray in
@@ -32,15 +36,17 @@ class ViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        
     }
-
-
+    
+    @objc func updateTable(_ notification: Notification){
+        self.viewDidLoad()
+    }
 }
 
 // MARK: -UITableViewDataSource
 
-extension ViewController: UITableViewDataSource {
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching {
             return filteredData.count
@@ -60,13 +66,26 @@ extension ViewController: UITableViewDataSource {
             
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "detailSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        if(segue.identifier == "detailSegue"){
+            let indexPath = self.tableView.indexPathForSelectedRow!
+            let tableViewArticle = segue.destination as? ArticleViewController
+            let selectedArticle = articles[indexPath.row]
+            tableViewArticle!.selectedArticle = selectedArticle
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }
 
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.filteredData.removeAll()
-        
         if searchBar.text == "" {
             isSearching = false
             tableView.reloadData()
@@ -85,5 +104,6 @@ extension ViewController: UISearchBarDelegate {
             }
             tableView.reloadData()
         }
+        
     }
 }
