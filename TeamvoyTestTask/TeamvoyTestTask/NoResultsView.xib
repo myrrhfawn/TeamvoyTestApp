@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Lgs-sE-vcS" customClass="UIActionSheet">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfK-5W-0vl">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VTX-DK-Zbt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="yfK-5W-0vl" firstAttribute="top" secondItem="VTX-DK-Zbt" secondAttribute="top" id="Hh4-Dm-Qcs"/>
+                <constraint firstItem="VTX-DK-Zbt" firstAttribute="bottom" secondItem="yfK-5W-0vl" secondAttribute="bottom" id="Jf6-hq-rIb"/>
+                <constraint firstItem="yfK-5W-0vl" firstAttribute="leading" secondItem="VTX-DK-Zbt" secondAttribute="leading" id="Lac-AJ-tS4"/>
+                <constraint firstItem="VTX-DK-Zbt" firstAttribute="trailing" secondItem="yfK-5W-0vl" secondAttribute="trailing" id="abK-3r-ZZt"/>
+                <constraint firstItem="yfK-5W-0vl" firstAttribute="leading" secondItem="VTX-DK-Zbt" secondAttribute="leading" id="h4m-eH-ZxY"/>
+                <constraint firstItem="yfK-5W-0vl" firstAttribute="top" secondItem="VTX-DK-Zbt" secondAttribute="top" id="uMq-Oi-FP9"/>
+            </constraints>
+            <point key="canvasLocation" x="-329" y="105"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
